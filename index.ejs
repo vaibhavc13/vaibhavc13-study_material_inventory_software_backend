@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin page</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #e6f7ff; /* light blue */
+    }
+
+    h2 {
+        margin-top: 30px;
+        margin-bottom: 10px;
+        color: #333;
+        text-align: center;
+        font-size: 24px;
+    }
+
+    form {
+        background-color: #ffffff; /* white */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #337ab7; /* dark blue */
+    }
+
+    input[type="text"],
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50; /* green */
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049; /* dark green */
+    }
+</style>
+</head>
+<body>
+
+<h2>Upload PDF Link,  and Subject Name</h2>
+
+<form action="/upload" method="post" >
+    <label for="link">PDF Link:</label>
+    <input type="text" id="link" name="link" required="true">
+    
+    <label for="subject">Select Subject Name:</label>
+    <select id="edit_subject" name="edit_subject">
+        <% allsubjects.forEach(subject => { %>
+            <option value="<%= subject %>"><%= subject %></option>
+        <% }); %>
+    </select>
+    
+    <input type="submit" value="Upload">
+</form>
+
+<h2>Edit PDF Link and Subject Name</h2>
+
+<form action="/edit" method="post">
+
+    
+    <label for="edit_subject">Subject Name:</label>
+    <select id="edit_subject" name="edit_subject">
+        <% allsubjects.forEach(subject => { %>
+            <option value="<%= subject %>"><%= subject %></option>
+        <% }); %>
+    </select>
+    
+    <input type="submit" value="Edit">
+</form>
+
+<h2>Create a New Subject</h2>
+
+<form action="/create" method="post">
+    <label for="newsub">New Subject Name:</label>
+    <input type="text" id="newsub" name="newsub">
+     <label for="newsub">New Subject Image link:</label>
+    <input type="text" id="newsublink" name="newsublink">
+    
+    <input type="submit" value="Create">
+</form>
+
+</body>
+</html>
